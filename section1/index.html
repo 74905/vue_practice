@@ -7,15 +7,32 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 </head>
 <body>
+<a id="google_link">google</a>
+
   <div id="app">
     {{ message }}
+    <a :href= "google">google</a><br>
+    <a :href="book.url">{{ book.title }}</a>
+    <input v-bind="formInput">
   </div>
 
 <script>
   let app = new Vue({
-    el: '#app',
-    data(){
-      return { message: 'Hello Vue!'}
+    el: '#app', //仮想DOM
+    data(){ //初期設定
+      
+      return { 
+      message: 'Hello Vue!',
+      google: 'https://google.com',
+      book: {
+        title: '本のタイトル',
+        url: 'https://google.com'
+      },
+      formInput:{
+        name: 'your_name',
+        placeholder: 'お名前'
+      }
+      } //キー：値で表示される
     }
   })
 </script>
