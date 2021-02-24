@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"  v-cloak>
+    {{totalPrice}}
+  </div>
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data(){
+        return{
+          price: 50,
+          number: 40,
+          books: [
+             { id: 1,
+               title: 'タイトル',
+               url: 'https://google.com'
+              },
+             {id: 2,
+               title: 'タイトル',
+               url: 'https://google.com'
+               },
+             {id: 3,
+               title: 'タイトル',
+               url: 'https://google.com'
+
+             },
+           ],
+          reactiveTest: {
+            name: "test"
+          }
+          }
+        },
+        methods: {},//記載した分だけ出力
+        computed: { //データの中身を変えない限り一回のみの処理
+          // totalPrice(){
+          //   return this.price * this.number
+          // }
+          totalPrice: app=> app.number * app.price //アロー関数の中で,thisを使うとwindowOJTを参照してしまう為
+        },
+        watch: {
+          books: {
+            handler(){
+              console.log("変更")
+            },
+            deep: true
+          }
+        }
+    })
+  </script>
+</body>
+</html>
